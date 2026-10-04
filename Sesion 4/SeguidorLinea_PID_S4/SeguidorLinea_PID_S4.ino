@@ -15,7 +15,7 @@ float Kp = 0.14;
 float Ki = 0;
 float Kd = 0.1;
 
-int posicion = 0, error = 0, giro = 0, integral = 0, ultimoError = 0, derivada = 0, velDer = 0, velIzq = 0;
+int integral = 0, ultimoError = 0, derivada = 0;
 
 void setup() {
   // Inicializar los pines del motor
@@ -36,18 +36,18 @@ void setup() {
 
 void loop() {
   // Leemos la posicion, con valores entre -255 y 255
-  posicion = leerPosicion();
+  int posicion = leerPosicion();
 
-  error = posicion - ref;
-
-  giro = (Kp * error) + (Ki * integral) + (Kd * derivada);
+  int error = posicion - ref;
 
   integral = integral + error;
 
   derivada = error - ultimoError;
 
-  velIzq = Tp + giro;
-  velDer = Tp - giro;
+  int giro = (Kp * error) + (Ki * integral) + (Kd * derivada);
+
+  int velIzq = Tp + giro;
+  int velDer = Tp - giro;
 
   motores(velIzq, velDer);
   

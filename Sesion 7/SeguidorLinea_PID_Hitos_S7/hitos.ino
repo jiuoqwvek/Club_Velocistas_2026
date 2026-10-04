@@ -56,6 +56,14 @@ void funcionHitoIz(){
 }
 void funcionHitoDe(){
   tone(BUZZER, 880, 200);
+  // Aumentamos contador de Hitos derecho
+  contDer++;
+  if (contDer == 2){ // Se contó el segundo hito derecho?
+    // Detener motores hasta apretar el boton
+    motores(0,0);
+    delay(1000);
+    botonInicio();
+  }
 }
 void funcionCruce(){
   tone(BUZZER, 440, 200);

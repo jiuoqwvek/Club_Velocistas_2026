@@ -15,12 +15,11 @@ float Kp = 0.14;
 float Ki = 0;
 float Kd = 0.1;
 
-int posicion = 0, error = 0, giro = 0, integral = 0, ultimoError = 0, derivada = 0, velDer = 0, velIzq = 0;
+int integral = 0, ultimoError = 0, derivada = 0, contDer = 0;
 
-int geo = 0;      //Variable de estado que indica nuestro modo de geo
-int l_geo = 0, ll_geo = 0, lll_geo = 0; //Guardan nuestra huella digital
-int umbral = 750; //umbral que consideraremos como negro
-
+int geo = 0;                             //Variable de estado que indica nuestro modo de geo
+int l_geo = 0, ll_geo = 0, lll_geo = 0;  //Guardan nuestra huella digital
+int umbral = 700;                        //umbral que consideraremos como negro
 
 void setup() {
   // Inicializar los pines del motor
@@ -28,19 +27,26 @@ void setup() {
 
   // Inicializar los sensores QTR-1A
   pinMode(HIZ, INPUT);
-	pinMode(HDE, INPUT);
-  
-  // Indicadores de INICIO de calibracion
-  tone(BUZZER, 440, 250);
-  
-  // Se calibra el sensor
-  calibrar();
+  pinMode(HDE, INPUT);
 
-  // Indicadores de TERMINO de calibracion
-  tone(BUZZER, 880, 200);
+  // Delay para dar tiempo a poner el Hermes en la pista
+  delay(1000);
+
+  // Indicadores de INICIO de calibracion
+  tone(BUZZER, 440, 50);
+
+  motores(30, -30);  // Gira solo mientras se calibra
+  calibrar();        // Se calibra el sensor
+  motores(0, 0);     // Deja de girar cuando termina
+
+  // Indicador de final de calibracion
+  tone(BUZZER, 880, 500);
 
   // Espera a que se apriete el botón para continuar
   botonInicio();
+
+  // Delay para dar tiempo a poner soltar el Hermes antes de que avance
+  delay(1000);
 }
 
 void loop() {
@@ -48,20 +54,20 @@ void loop() {
   hitos();
 
   // Leemos la posicion, con valores entre -255 y 255
-  posicion = leerPosicion();
+  int posicion = leerPosicion();
 
-  error = posicion - ref;
-
-  giro = (Kp * error) + (Ki * integral) + (Kd * derivada);
+  int error = posicion - ref;
 
   integral = integral + error;
 
   derivada = error - ultimoError;
 
-  velIzq = Tp + giro;
-  velDer = Tp - giro;
+  int giro = (Kp * error) + (Ki * integral) + (Kd * derivada);
+
+  int velIzq = Tp + giro;
+  int velDer = Tp - giro;
 
   motores(velIzq, velDer);
-  
+
   ultimoError = error;
 }
