@@ -4,7 +4,7 @@
 
 Este repositorio es para ustedes. Aquí van a encontrar todo lo que vamos viendo en las sesiones del club: los códigos y las presentaciones de cada clase.
 
-La idea es que sea su lugar de apoyo. Si se les olvidó cómo se conectaba algo, qué hacía una función o cómo iba el código de la clase, ven aquí a revisarlo con calma. No pasa nada por no acordarse de todo: para eso está este espacio. <3
+La idea es que sea su lugar de apoyo. Si se les olvidó cómo se conectaba algo, qué hacía una función o cómo iba el código de la clase, ven aquí a revisarlo con calma. No pasa nada por no acordarse de todo: para eso está este espacio.
 
 ---
 
@@ -65,7 +65,6 @@ La idea es que sea su lugar de apoyo. Si se les olvidó cómo se conectaba algo,
   - **Derechas:** solo hay 2, una al inicio y otra al final. Sirven para que el robot sepa cuándo detenerse.
 - Para verlas usamos los sensores **QTR-1A** (izquierdo en `A7` y derecho en `A6`). Se leen con `analogRead()`, sin librería.
 - También usamos el **buzzer** (pin `10`) con `tone(BUZZER, frecuencia, duración)`.
-- Esta sesión fue de desafíos en clase, así que no tiene código en el repositorio.
 
 ### Sesión 7: Detección de hitos (huella digital)
 - Presentación: [Club-CYT-S07-Velocistas.pdf](PDF%20sesiones/Club-CYT-S07-Velocistas.pdf)
@@ -114,5 +113,6 @@ Este repositorio está hecho con mucho cariño, pensando en cada uno de ustedes.
 Sigan siendo curiosos, compartan lo que saben con sus compañeros y, sobre todo, disfruten aprendiendo!
 
 Con cariño,
+
 Ao y Mauri ♡
 
