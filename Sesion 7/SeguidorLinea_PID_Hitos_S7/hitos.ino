@@ -20,13 +20,13 @@ void hitos() {
   if (Hiz == 0 && Hde == 0) {
     geo = 0;
   }
-  if (Hiz == 0 && Hde == 0) {
+  if (Hiz == 1 && Hde == 0) {
     geo = 1;
   }
-  if (Hiz == 0 && Hde == 0) {
+  if (Hiz == 0 && Hde == 1) {
     geo = 2;
   }
-  if (Hiz == 0 && Hde == 0) {
+  if (Hiz == 1 && Hde == 1) {
     geo = 3;
   }
 
